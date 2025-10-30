@@ -537,7 +537,7 @@ st.markdown("""
 st.markdown("""
 <div class="main-header">
     <h1>HEADACHESSSS</h1>
-    <p>Sice I don't know what to name our dashboard, I will just call it headaces for now :)</p>
+    <p>Since I don't know what to name our dashboard, I will just call it headaces for now :)</p>
     <p>Reference: Our shared doc's name :)</p>
 </div>
 """,
@@ -2976,3 +2976,4 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
         </div>
         """,
                     unsafe_allow_html=True)
+
