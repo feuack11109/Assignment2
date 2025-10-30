@@ -8,11 +8,8 @@ st.set_page_config(page_title="Global Crime Statistics Dashboard",
                    layout="wide")
 
 
-import streamlit as st
-import pandas as pd
-from pathlib import Path
+# Load data with caching
 
-# Cache data loading permanently (since data won't change)
 @st.cache_data
 def load_data():
     """Load all CSV datasets"""
@@ -29,10 +26,7 @@ def load_data():
     return offences, victims, trafficking, convicted, personnel, prosecuted, sdg_safety
 
 
-# Load all datasets
 offences_df, victims_df, trafficking_df, convicted_df, personnel_df, prosecuted_df, sdg_safety_df = load_data()
-
-
 
 st.markdown("""
 <style>
@@ -536,9 +530,8 @@ st.markdown("""
 
 st.markdown("""
 <div class="main-header">
-    <h1>HEADACHESSSS</h1>
-    <p>Since I don't know what to name our dashboard, I will just call it headaces for now :)</p>
-    <p>Reference: Our shared doc's name :)</p>
+    <h1>Global Crime Statistics Dashboard</h1>
+    <p>Comprehensive analysis of crime data trends and patterns worldwide</p>
 </div>
 """,
             unsafe_allow_html=True)
@@ -1006,10 +999,16 @@ elif st.session_state.current_page == "📈 Overview":
                      color_discrete_sequence=cyan_palette)
         fig.update_traces(textfont=dict(color='#2d3748', size=11))
         fig.update_layout(height=300,
-                          margin=dict(l=5, r=5, t=0, b=0),
+                          margin=dict(l=5, r=5, t=0, b=60),
                           paper_bgcolor='white',
                           font=dict(color='#2d3748', size=10),
-                          legend=dict(font=dict(color='#2d3748', size=10)),
+                          legend=dict(
+                              orientation='h',
+                              yanchor='top',
+                              y=-0.15,
+                              xanchor='center',
+                              x=0.5,
+                              font=dict(color='#2d3748', size=8)),
                           showlegend=True)
         st.plotly_chart(fig, use_container_width=True, key="chart3")
         
@@ -1178,10 +1177,16 @@ elif st.session_state.current_page == "👥 Gender Analysis":
         fig.update_traces(marker=dict(colors=colors),
                          textfont=dict(color='#2d3748', size=11))
         fig.update_layout(height=300, 
-                          margin=dict(l=5, r=5, t=0, b=0),
+                          margin=dict(l=5, r=5, t=0, b=60),
                           paper_bgcolor='white',
                           font=dict(color='#2d3748', size=10),
-                          legend=dict(font=dict(color='#2d3748', size=10)))
+                          legend=dict(
+                              orientation='h',
+                              yanchor='top',
+                              y=-0.15,
+                              xanchor='center',
+                              x=0.5,
+                              font=dict(color='#2d3748', size=8)))
         st.plotly_chart(fig, use_container_width=True)
         
         st.markdown('</div>', unsafe_allow_html=True)
@@ -1237,7 +1242,7 @@ elif st.session_state.current_page == "👥 Gender Analysis":
                      'Female': '#ec4899'
                  })
     fig.update_layout(height=300,
-                      margin=dict(l=40, r=20, t=10, b=80),
+                      margin=dict(l=40, r=20, t=10, b=120),
                       plot_bgcolor='white',
                       paper_bgcolor='white',
                       xaxis=dict(gridcolor='#cbd5e0', 
@@ -1247,7 +1252,14 @@ elif st.session_state.current_page == "👥 Gender Analysis":
                       yaxis=dict(gridcolor='#cbd5e0', 
                                 tickfont=dict(color='#2d3748'),
                                 title=dict(text='Number of Records', font=dict(color='#2d3748'))),
-                      legend=dict(font=dict(color='#2d3748'), title=dict(text='Gender', font=dict(color='#2d3748'))))
+                      legend=dict(
+                          orientation='h',
+                          yanchor='top',
+                          y=-0.45,
+                          xanchor='center',
+                          x=0.5,
+                          font=dict(color='#2d3748', size=8),
+                          title=dict(text='Gender', font=dict(color='#2d3748', size=8))))
     st.plotly_chart(fig, use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -1589,7 +1601,7 @@ elif st.session_state.current_page == "⚖️ Conviction Outcomes":
                              'Drug trafficking': '#ec4899'
                          })
             fig.update_layout(height=300,
-                              margin=dict(l=40, r=20, t=10, b=40),
+                              margin=dict(l=40, r=20, t=10, b=100),
                               plot_bgcolor='white',
                               paper_bgcolor='white',
                               xaxis=dict(gridcolor='#cbd5e0', 
@@ -1598,7 +1610,14 @@ elif st.session_state.current_page == "⚖️ Conviction Outcomes":
                               yaxis=dict(gridcolor='#cbd5e0', 
                                         tickfont=dict(color='#2d3748'),
                                         title=dict(text='Total Convictions', font=dict(color='#2d3748'))),
-                              legend=dict(font=dict(color='#2d3748'), title=dict(text='Crime Type', font=dict(color='#2d3748'))))
+                              legend=dict(
+                                  orientation='h',
+                                  yanchor='top',
+                                  y=-0.35,
+                                  xanchor='center',
+                                  x=0.5,
+                                  font=dict(color='#2d3748', size=8),
+                                  title=dict(text='Crime Type', font=dict(color='#2d3748', size=8))))
             st.plotly_chart(fig, use_container_width=True)
         
         st.markdown('</div>', unsafe_allow_html=True)
@@ -1691,10 +1710,16 @@ elif st.session_state.current_page == "⚖️ Conviction Outcomes":
                          })
             fig.update_traces(textfont=dict(color='#2d3748', size=12))
             fig.update_layout(height=300,
-                              margin=dict(l=20, r=20, t=10, b=10),
+                              margin=dict(l=20, r=20, t=10, b=60),
                               paper_bgcolor='white',
                               font=dict(color='#2d3748', size=11),
-                              legend=dict(font=dict(color='#2d3748', size=11)))
+                              legend=dict(
+                                  orientation='h',
+                                  yanchor='top',
+                                  y=-0.15,
+                                  xanchor='center',
+                                  x=0.5,
+                                  font=dict(color='#2d3748', size=8)))
             st.plotly_chart(fig, use_container_width=True)
         
         st.markdown('</div>', unsafe_allow_html=True)
@@ -1844,7 +1869,7 @@ elif st.session_state.current_page == "🏛️ Justice System Capacity":
                              'Trafficking in persons': '#ec4899'
                          })
             fig.update_layout(height=300,
-                              margin=dict(l=40, r=20, t=10, b=40),
+                              margin=dict(l=40, r=20, t=10, b=100),
                               plot_bgcolor='white',
                               paper_bgcolor='white',
                               xaxis=dict(gridcolor='#cbd5e0', 
@@ -1853,7 +1878,14 @@ elif st.session_state.current_page == "🏛️ Justice System Capacity":
                               yaxis=dict(gridcolor='#cbd5e0', 
                                         tickfont=dict(color='#2d3748'),
                                         title=dict(text='Prosecution Records', font=dict(color='#2d3748'))),
-                              legend=dict(font=dict(color='#2d3748'), title=dict(text='Crime Type', font=dict(color='#2d3748'))))
+                              legend=dict(
+                                  orientation='h',
+                                  yanchor='top',
+                                  y=-0.35,
+                                  xanchor='center',
+                                  x=0.5,
+                                  font=dict(color='#2d3748', size=8),
+                                  title=dict(text='Crime Type', font=dict(color='#2d3748', size=8))))
             st.plotly_chart(fig, use_container_width=True)
         
         st.markdown('</div>', unsafe_allow_html=True)
@@ -1974,15 +2006,22 @@ elif st.session_state.current_page == "🏛️ Justice System Capacity":
                            color_continuous_scale=[[0, '#a78bfa'], [0.5, '#7c3aed'], [1, '#4c1d95']],
                            labels={'Prosecution Records': 'Records'})
         fig.update_layout(height=500,
-                          margin=dict(l=0, r=0, t=0, b=0),
+                          margin=dict(l=0, r=0, t=0, b=80),
                           paper_bgcolor='white',
                           geo=dict(showframe=False,
                                   showcoastlines=True,
                                   projection_type='natural earth',
                                   bgcolor='white'),
                           coloraxis_colorbar=dict(
-                              tickfont=dict(color='#000000', size=12),
-                              title=dict(font=dict(color='#000000', size=12))))
+                              orientation='h',
+                              yanchor='top',
+                              y=-0.15,
+                              xanchor='center',
+                              x=0.5,
+                              thickness=15,
+                              len=0.5,
+                              tickfont=dict(color='#000000', size=10),
+                              title=dict(text='Records', font=dict(color='#000000', size=10))))
         fig.update_traces(hovertemplate='<b>%{location}</b><br>Prosecution Records: %{z}<extra></extra>')
         st.plotly_chart(fig, use_container_width=True)
     
@@ -2214,7 +2253,7 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                                   markers=True)
                     fig.update_traces(line=dict(width=3), marker=dict(size=8))
                     fig.update_layout(height=300,
-                                      margin=dict(l=0, r=0, t=0, b=0),
+                                      margin=dict(l=30, r=30, t=20, b=80),
                                       plot_bgcolor='rgba(0,0,0,0)',
                                       paper_bgcolor='rgba(0,0,0,0)',
                                       yaxis=dict(gridcolor='#e2e8f0',
@@ -2286,7 +2325,7 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                                       colorscale=[[0, '#764ba2'], [0.5, '#667eea'], [1, '#4c51bf']],
                                       showscale=False)))
                 fig.update_layout(height=300,
-                                  margin=dict(l=0, r=0, t=0, b=0),
+                                  margin=dict(l=30, r=30, t=20, b=80),
                                   plot_bgcolor='rgba(0,0,0,0)',
                                   paper_bgcolor='rgba(0,0,0,0)',
                                   showlegend=False,
@@ -2370,11 +2409,17 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                         names='Sex',
                         color_discrete_sequence=px.colors.sequential.Purples_r)
                     fig.update_layout(height=280,
-                                      margin=dict(l=40, r=100, t=20, b=20),
+                                      margin=dict(l=40, r=100, t=20, b=80),
                                       plot_bgcolor='rgba(0,0,0,0)',
                                       paper_bgcolor='rgba(0,0,0,0)',
                                       font=dict(color='#000000'),
-                                      legend=dict(font=dict(color='#000000')))
+                                      legend=dict(
+                                          orientation='h',
+                                          yanchor='top',
+                                          y=-0.15,
+                                          xanchor='center',
+                                          x=0.5,
+                                          font=dict(color='#000000', size=8)))
                     st.plotly_chart(fig, use_container_width=True)
                 else:
                     st.info("No data available for this view")
@@ -2521,7 +2566,7 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                                        colorscale=[[0, '#764ba2'], [0.5, '#667eea'], [1, '#4c51bf']],
                                        showscale=False)))
                 fig.update_layout(height=400,
-                                  margin=dict(l=0, r=0, t=0, b=0),
+                                  margin=dict(l=30, r=30, t=20, b=80),
                                   plot_bgcolor='rgba(0,0,0,0)',
                                   paper_bgcolor='rgba(0,0,0,0)',
                                   xaxis=dict(gridcolor='#e2e8f0',
@@ -2585,7 +2630,7 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                                  color='Records',
                                  color_continuous_scale=[[0, '#764ba2'], [0.5, '#667eea'], [1, '#4c51bf']])
                     fig.update_layout(height=350,
-                                      margin=dict(l=0, r=0, t=0, b=0),
+                                      margin=dict(l=30, r=30, t=20, b=100),
                                       plot_bgcolor='rgba(0,0,0,0)',
                                       paper_bgcolor='rgba(0,0,0,0)',
                                       xaxis=dict(gridcolor='#e2e8f0',
@@ -2594,8 +2639,15 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                                       yaxis=dict(title=dict(text='Violence Type', font=dict(color='#000000')),
                                                 tickfont=dict(color='#000000')),
                                       coloraxis_colorbar=dict(
-                                          title=dict(text='Records', font=dict(color='#000000')),
-                                          tickfont=dict(color='#000000')),
+                                          orientation='h',
+                                          yanchor='top',
+                                          y=-0.3,
+                                          xanchor='center',
+                                          x=0.5,
+                                          thickness=15,
+                                          len=0.5,
+                                          title=dict(text='Records', font=dict(color='#000000', size=10)),
+                                          tickfont=dict(color='#000000', size=10)),
                                       showlegend=False)
                     st.plotly_chart(fig, use_container_width=True)
                 else:
@@ -2624,7 +2676,7 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                         color_discrete_sequence=['#c53030', '#4c51bf', '#d69e2e', '#38a169', '#805ad5', '#dd6b20'])
                     fig.update_traces(line=dict(width=3), marker=dict(size=8))
                     fig.update_layout(height=350,
-                                      margin=dict(l=0, r=120, t=0, b=0),
+                                      margin=dict(l=0, r=120, t=0, b=80),
                                       plot_bgcolor='rgba(0,0,0,0)',
                                       paper_bgcolor='rgba(0,0,0,0)',
                                       yaxis=dict(gridcolor='#e2e8f0',
@@ -2633,8 +2685,13 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                                       xaxis=dict(title=dict(text='Year', font=dict(color='#000000')),
                                                 tickfont=dict(color='#000000')),
                                       legend=dict(
-                                          font=dict(color='#000000', size=10),
-                                          title=dict(font=dict(color='#000000', size=10))))
+                                          orientation='h',
+                                          yanchor='top',
+                                          y=-0.25,
+                                          xanchor='center',
+                                          x=0.5,
+                                          font=dict(color='#000000', size=8),
+                                          title=dict(font=dict(color='#000000', size=8))))
                     st.plotly_chart(fig, use_container_width=True)
                 else:
                     st.info("No data available for this view")
@@ -2663,7 +2720,7 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                                  'Both': '#553c9a'
                              })
                 fig.update_layout(height=300,
-                                  margin=dict(l=30, r=30, t=20, b=40),
+                                  margin=dict(l=30, r=30, t=20, b=120),
                                   plot_bgcolor='rgba(0,0,0,0)',
                                   paper_bgcolor='rgba(0,0,0,0)',
                                   yaxis=dict(gridcolor='#e2e8f0',
@@ -2673,12 +2730,13 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                                             title=dict(text='Violence Type', font=dict(color='#000000')),
                                             tickfont=dict(color='#000000')),
                                   legend=dict(
-                                      font=dict(color='#000000'),
-                                      title=dict(font=dict(color='#000000')),
-                                      x=1,
-                                      y=1,
-                                      xanchor='right',
-                                      yanchor='top'))
+                                      orientation='h',
+                                      yanchor='top',
+                                      y=-0.45,
+                                      xanchor='center',
+                                      x=0.5,
+                                      font=dict(color='#000000', size=8),
+                                      title=dict(font=dict(color='#000000', size=8))))
                 st.plotly_chart(fig, use_container_width=True)
             else:
                 st.info("No data available for this view")
@@ -2740,13 +2798,18 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                         color_discrete_sequence=px.colors.sequential.Blues_r,
                         hole=0.4)
                     fig.update_layout(height=350,
-                                      margin=dict(l=0, r=0, t=0, b=0),
+                                      margin=dict(l=30, r=30, t=20, b=80),
                                       plot_bgcolor='rgba(0,0,0,0)',
                                       paper_bgcolor='rgba(0,0,0,0)',
                                       font=dict(color='#000000'),
                                       legend=dict(
-                                          font=dict(color='#000000'),
-                                          title=dict(font=dict(color='#000000'))))
+                                          orientation='h',
+                                          yanchor='top',
+                                          y=-0.25,
+                                          xanchor='center',
+                                          x=0.5,
+                                          font=dict(color='#000000', size=8),
+                                          title=dict(font=dict(color='#000000', size=8))))
                     st.plotly_chart(fig, use_container_width=True)
                 else:
                     st.info("No data available for this view")
@@ -2778,7 +2841,7 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                                      'Both': '#553c9a'
                                  })
                     fig.update_layout(height=350,
-                                      margin=dict(l=0, r=0, t=0, b=0),
+                                      margin=dict(l=30, r=30, t=20, b=120),
                                       plot_bgcolor='rgba(0,0,0,0)',
                                       paper_bgcolor='rgba(0,0,0,0)',
                                       yaxis=dict(gridcolor='#e2e8f0',
@@ -2788,8 +2851,13 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                                                 title=dict(text='Crime Type', font=dict(color='#000000')),
                                                 tickfont=dict(color='#000000')),
                                       legend=dict(
-                                          font=dict(color='#000000'),
-                                          title=dict(font=dict(color='#000000'))))
+                                          orientation='h',
+                                          yanchor='top',
+                                          y=-0.45,
+                                          xanchor='center',
+                                          x=0.5,
+                                          font=dict(color='#000000', size=8),
+                                          title=dict(font=dict(color='#000000', size=8))))
                     st.plotly_chart(fig, use_container_width=True)
                 else:
                     st.info("No data available for this view")
@@ -2818,7 +2886,7 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                     color_discrete_sequence=['#c53030', '#4c51bf', '#d69e2e', '#38a169', '#805ad5', '#dd6b20'])
                 fig.update_traces(line=dict(width=3), marker=dict(size=8))
                 fig.update_layout(height=300,
-                                  margin=dict(l=0, r=0, t=0, b=0),
+                                  margin=dict(l=30, r=30, t=20, b=80),
                                   plot_bgcolor='rgba(0,0,0,0)',
                                   paper_bgcolor='rgba(0,0,0,0)',
                                   yaxis=dict(gridcolor='#e2e8f0',
@@ -2827,8 +2895,13 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                                   xaxis=dict(title=dict(text='Year', font=dict(color='#000000')),
                                             tickfont=dict(color='#000000')),
                                   legend=dict(
-                                      font=dict(color='#000000'),
-                                      title=dict(font=dict(color='#000000'))))
+                                      orientation='h',
+                                      yanchor='top',
+                                      y=-0.2,
+                                      xanchor='center',
+                                      x=0.5,
+                                      font=dict(color='#000000', size=8),
+                                      title=dict(font=dict(color='#000000', size=8))))
                 st.plotly_chart(fig, use_container_width=True)
             else:
                 st.info("No data available for this view")
@@ -2947,7 +3020,7 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                              color='Records',
                              color_continuous_scale=[[0, '#764ba2'], [0.5, '#667eea'], [1, '#4c51bf']])
                 fig.update_layout(height=300,
-                                  margin=dict(l=30, r=80, t=20, b=30),
+                                  margin=dict(l=30, r=30, t=20, b=100),
                                   plot_bgcolor='rgba(0,0,0,0)',
                                   paper_bgcolor='rgba(0,0,0,0)',
                                   xaxis=dict(gridcolor='#e2e8f0',
@@ -2956,8 +3029,15 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
                                   yaxis=dict(title=dict(text='Region', font=dict(color='#000000')),
                                             tickfont=dict(color='#000000')),
                                   coloraxis_colorbar=dict(
-                                      title=dict(text='Records', font=dict(color='#000000')),
-                                      tickfont=dict(color='#000000')),
+                                      orientation='h',
+                                      yanchor='top',
+                                      y=-0.35,
+                                      xanchor='center',
+                                      x=0.5,
+                                      thickness=15,
+                                      len=0.5,
+                                      title=dict(text='Records', font=dict(color='#000000', size=10)),
+                                      tickfont=dict(color='#000000', size=10)),
                                   showlegend=False)
                 st.plotly_chart(fig, use_container_width=True)
             else:
@@ -2976,4 +3056,3 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
         </div>
         """,
                     unsafe_allow_html=True)
-
