@@ -530,8 +530,9 @@ st.markdown("""
 
 st.markdown("""
 <div class="main-header">
-    <h1>Global Crime Statistics Dashboard</h1>
-    <p>Comprehensive analysis of crime data trends and patterns worldwide</p>
+    <h1>HEADACESSS</h1>
+    <p>Since I don't know what to name our dashboard, I'll just call it headaces for now :)</p>
+    <p>Refer to our Shared Doc's Name (￣^￣ )ゞ</p>
 </div>
 """,
             unsafe_allow_html=True)
@@ -3056,3 +3057,4 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
         </div>
         """,
                     unsafe_allow_html=True)
+
