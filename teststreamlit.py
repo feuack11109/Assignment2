@@ -634,7 +634,31 @@ if st.session_state.current_page == "🏠 Home":
     st.markdown(f"""
     <div class="hero-section">
         <h2 class="hero-title">Crime Data Reporting Coverage - {region_display}</h2>
-        <p class="hero-subtitle">Analysis of crime data availability and reporting patterns from government databases. Metrics show data coverage, not incident counts.</p>
+        <p class="hero-subtitle">Case Background
+Sexual violence, particularly rape, is one of the most persistent crimes worldwide. Women and girls are disproportionately affected because of their biological vulnerability, ease of exploitation, and social inequalities. These crimes rarely occur in isolation; they escalate into violent assaults, trafficking, drug-related exploitation, and even homicide. Organized crime markets, such as the drug trade and firearms trafficking, further fuel this cycle. Justice systems intervene through prosecutions, convictions, and imprisonment, but evidence suggests they are often more reactive than preventative.
+Central Message (Problem Definition)
+The central problem is whether judicial interventions: prosecutions, convictions, prisons, and firearm control, actually prevent violent crime or merely respond after harm is done. The data suggest that justice systems reduce impunity in the short term but fail to break the deeper cycle of violence without prevention and rehabilitation.
+
+Goal and Objectives
+Goal: To determine if justice systems can effectively reduce violent crime.
+
+Objectives:
+To analyze why women and girls are disproportionately victims of rape and sexual violence.
+To explore how sexual violence escalates into wider forms of violence, trafficking, and homicide.
+To examine the role of drug trade and firearms as enablers of organized crime.
+To assess whether prosecutions, convictions, and prisons reduce crime or simply react to it.
+To recommend strategies for building smarter, more preventative justice systems.
+
+Narrative:
+The story begins with victims of rape, highlighting how women and girls are the most vulnerable due to biological, social, and cultural inequalities. From there, the data shows how rape connects to broader cycles of violence, escalating into homicide, trafficking, and drug exploitation. At the center are the crime markets, where firearms and drugs sustain organized violence and weaken community safety. Justice systems step in with prosecutions, convictions, and imprisonment. Still, these responses often come after harm has already occurred. Instead of preventing crime, they mostly process it. The narrative demonstrates that without early intervention, prevention, and rehabilitation, societies remain trapped in cycles of violence despite heavy investment in justice systems.
+
+Target Audience:
+Policy Makers: To design smarter justice systems that prioritize prevention.
+Law Enforcement & Judiciary: To strengthen conviction pipelines, disrupt markets, and balance punishment with rehabilitation.
+Civil Society & NGOs: To advocate for victim protection, especially for women and children.
+Academics & Students: To understand the global link between crime and justice through data-driven storytelling.
+General Public: To raise awareness of how justice, prevention, and safety are deeply interconnected.
+</p>
     </div>
     """,
                 unsafe_allow_html=True)
@@ -3058,5 +3082,6 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
