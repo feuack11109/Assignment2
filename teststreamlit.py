@@ -3,7 +3,6 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 import numpy as np
-from pathlib import Path
 
 st.set_page_config(page_title="Global Crime Statistics Dashboard",
                    layout="wide")
@@ -531,9 +530,8 @@ st.markdown("""
 
 st.markdown("""
 <div class="main-header">
-    <h1>HEADACESSS</h1>
-    <p>Since I don't know what to name our dashboard, I'll just call it headaces for now :)</p>
-    <p>Refer to our Shared Doc's Name (￣^￣ )ゞ</p>
+    <h1>Global Crime Statistics Dashboard</h1>
+    <p>Comprehensive analysis of crime data trends and patterns worldwide</p>
 </div>
 """,
             unsafe_allow_html=True)
@@ -634,10 +632,42 @@ if st.session_state.current_page == "🏠 Home":
     st.markdown(f"""
     <div class="hero-section">
         <h2 class="hero-title">Crime Data Reporting Coverage - {region_display}</h2>
-        <p class="hero-subtitle">Analysis of crime data availability and reporting patterns from government databases. Metrics show data coverage, not incident counts.</p>
+        <div style="text-align: left; max-width: 1000px; margin: 30px auto 0 auto; padding: 0 20px;">
+            <h3 style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 0 0 12px 0; border-top: 2px solid rgba(255, 255, 255, 0.5); padding-top: 15px;">Case Background</h3>
+            <p style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; text-align: justify;">
+                Sexual violence, particularly rape, is one of the most persistent crimes worldwide. Women and girls are disproportionately affected because of their biological vulnerability, ease of exploitation, and social inequalities. These crimes are part of a broader landscape that includes violent assaults, trafficking, drug-related exploitation, and homicide. Organized crime markets, such as the drug trade and firearms trafficking, further fuel this cycle. Justice systems intervene through prosecutions, convictions, and imprisonment, primarily responding to crimes after they occur.
+            </p>
+            <h3 style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 20px 0 12px 0; border-top: 2px solid rgba(255, 255, 255, 0.5); padding-top: 15px;">Central Message (Problem Definition)</h3>
+            <p style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; text-align: justify;">
+                The central question is whether judicial interventions (prosecutions, convictions, imprisonment) address violent crime through punishment alone, or whether broader prevention and rehabilitation approaches are needed. The data provide a baseline of current justice system reporting to inform this ongoing policy debate.
+            </p>
+            <h3 style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 20px 0 12px 0; border-top: 2px solid rgba(255, 255, 255, 0.5); padding-top: 15px;">Goal and Objectives</h3>
+            <p style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin-bottom: 10px;">
+                <strong>Goal:</strong> To determine if justice systems can effectively reduce violent crime.
+            </p>
+            <p style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin-bottom: 8px;"><strong>Objectives:</strong></p>
+            <ul style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin: 0 0 20px 20px; padding-left: 20px;">
+                <li>To analyze why women and girls are disproportionately victims of rape and sexual violence.</li>
+                <li>To explore the relationship between different forms of violence, trafficking, and homicide through available crime reporting data.</li>
+                <li>To examine conviction patterns for drug trafficking crimes and their relationship to violent crime reporting.</li>
+                <li>To assess whether prosecutions, convictions, and prisons reduce crime or simply react to it.</li>
+                <li>To recommend strategies for building smarter, more preventative justice systems.</li>
+            </ul>
+            <h3 style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 20px 0 12px 0; border-top: 2px solid rgba(255, 255, 255, 0.5); padding-top: 15px;">Narrative</h3>
+            <p style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; text-align: justify;">
+                The story begins with victims of rape, highlighting how women and girls are the most vulnerable due to biological, social, and cultural inequalities. From there, the data covers multiple forms of violence including homicide, trafficking, and drug-related crime, revealing the breadth of violent crime reporting across justice systems. At the center are the crime markets, where firearms and drugs sustain organized violence and weaken community safety. Justice systems step in with prosecutions, convictions, and imprisonment. Still, these responses often come after harm has already occurred. Instead of preventing crime, they mostly process it. The narrative demonstrates that without early intervention, prevention, and rehabilitation, societies remain trapped in cycles of violence despite heavy investment in justice systems.
+            </p>
+            <h3 style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 20px 0 12px 0; border-top: 2px solid rgba(255, 255, 255, 0.5); padding-top: 15px;">Target Audience</h3>
+            <ul style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin: 0 0 10px 20px; padding-left: 20px;">
+                <li><strong>Policy Makers:</strong> To design smarter justice systems that prioritize prevention.</li>
+                <li><strong>Law Enforcement &amp; Judiciary:</strong> To strengthen conviction pipelines, disrupt markets, and balance punishment with rehabilitation.</li>
+                <li><strong>Civil Society &amp; NGOs:</strong> To advocate for victim protection, especially for women and children.</li>
+                <li><strong>Academics &amp; Students:</strong> To understand the global link between crime and justice through data-driven storytelling.</li>
+                <li><strong>General Public:</strong> To raise awareness of how justice, prevention, and safety are deeply interconnected.</li>
+            </ul>
+        </div>
     </div>
-    """,
-                unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns(3, gap="large")
     with col1:
@@ -674,7 +704,7 @@ if st.session_state.current_page == "🏠 Home":
         <div class="feature-card">
             <div class="feature-icon">📈</div>
             <h3 class="feature-title">Data Coverage Overview</h3>
-            <p class="feature-description">Explore which countries and regions report crime data, tracking reporting patterns and data availability across categories</p>
+            <p class="feature-description">Hypothesis: Crime data reporting patterns vary significantly across countries and regions, revealing temporal consistency gaps and geographic disparities in crime intelligence infrastructure. Analyzes which countries maintain continuous multi-year reporting versus sporadic participation, and identifies regional clusters with strong versus weak data submission practices that may reflect underlying statistical capacity differences.</p>
             <div class="feature-highlight">Multi-year coverage trends</div>
         </div>
         """,
@@ -687,7 +717,7 @@ if st.session_state.current_page == "🏠 Home":
         <div class="feature-card">
             <div class="feature-icon">👥</div>
             <h3 class="feature-title">Gender Data Patterns</h3>
-            <p class="feature-description">Analysis of gender-disaggregated data availability in victimization reporting across countries and regions</p>
+            <p class="feature-description">Hypothesis: Gender-disaggregated crime data availability varies across countries and crime types, with some jurisdictions providing detailed sex-specific victimization statistics while others report aggregated totals. Analyzes perpetrator-victim relationship patterns (intimate partner, known person, stranger) by gender to identify reporting trends, and examines whether certain relationship categories show gender-skewed data submission patterns.</p>
             <div class="feature-highlight">Demographic reporting</div>
         </div>
         """,
@@ -702,7 +732,7 @@ if st.session_state.current_page == "🏠 Home":
         <div class="feature-card">
             <div class="feature-icon">🔍</div>
             <h3 class="feature-title">Trafficking Data Coverage</h3>
-            <p class="feature-description">Examine patterns in trafficking data reporting and detection across different regions and countries</p>
+            <p class="feature-description">Hypothesis: Trafficking detection and reporting patterns vary substantially across countries and regions, with some jurisdictions demonstrating consistent data submission on detected victims while others show gaps. Analyzes cross-border trafficking flows through country of repatriation and citizenship data, examines exploitation type distributions (sexual exploitation versus forced labour), and tracks whether detection efforts correlate with prosecution and conviction reporting to assess criminal justice system follow-through.</p>
             <div class="feature-highlight">Detection reporting</div>
         </div>
         """,
@@ -715,7 +745,7 @@ if st.session_state.current_page == "🏠 Home":
         <div class="feature-card">
             <div class="feature-icon">⚠️</div>
             <h3 class="feature-title">Conviction Statistics</h3>
-            <p class="feature-description">Actual conviction counts from justice systems, showing quantitative outcomes for prosecution efforts</p>
+            <p class="feature-description">Hypothesis: Conviction outcomes for rape and drug trafficking crimes serve as measurable indicators of criminal justice system accountability, where temporal trends and prosecution-to-conviction ratios reveal whether reported cases translate into judicial outcomes. Analyzes geographic variations in conviction reporting, identifies countries with consistent conviction data versus sporadic records, and examines whether regions with higher prosecution volumes demonstrate proportional conviction rates or system bottlenecks.</p>
             <div class="feature-highlight">Quantitative data</div>
         </div>
         """,
@@ -730,7 +760,7 @@ if st.session_state.current_page == "🏠 Home":
         <div class="feature-card">
             <div class="feature-icon">🏛️</div>
             <h3 class="feature-title">Justice System Reporting</h3>
-            <p class="feature-description">Coverage of criminal justice personnel data and prosecution reporting across countries</p>
+            <p class="feature-description">Hypothesis: Criminal justice personnel reporting varies by country and system component, with some jurisdictions providing comprehensive data on police, judicial, and prison personnel while others submit partial records. Analyzes which personnel categories (prevention police, judges, prison staff) receive more consistent reporting attention, examines temporal trends in personnel data submission, and explores whether countries reporting more personnel categories also demonstrate higher prosecution reporting activity.</p>
             <div class="feature-highlight">System capacity data</div>
         </div>
         """,
@@ -743,7 +773,7 @@ if st.session_state.current_page == "🏠 Home":
         <div class="feature-card">
             <div class="feature-icon">🛡️</div>
             <h3 class="feature-title">Safety & SDG Indicators</h3>
-            <p class="feature-description">Analysis of safety perception, violence prevalence, and SDG indicators for peace and justice</p>
+            <p class="feature-description">Hypothesis: SDG 16.1 indicators—including homicide victimization rates, violence prevalence across crime types, and subjective safety perceptions—can be analyzed alongside police reporting rates and bribery indices to identify patterns in crime reporting behavior. Tests whether countries showing divergence between low safety perception and low official crime statistics also exhibit low police reporting rates, suggesting potential underreporting dynamics, and examines whether higher bribery prevalence correlates with reduced trust in formal reporting mechanisms.</p>
             <div class="feature-highlight">Global safety metrics</div>
         </div>
         """,
@@ -768,13 +798,13 @@ if st.session_state.current_page == "🏠 Home":
         <div class="insights-grid">
             <div class="insight-item">
                 <div class="insight-icon">🌏</div>
-                <h4 class="insight-heading">Geographic Coverage</h4>
-                <p class="insight-text">Data reporting from {countries_count} countries in {region_display} spanning {year_range}, showing which locations submit crime data to international databases.</p>
+                <h4 class="insight-heading">General Crime Reporting</h4>
+                <p class="insight-text">{countries_count} countries submit general crime data (rape, sexual violence, kidnapping) in {region_display} spanning {year_range}, showing which locations report broad offense categories to international databases.</p>
             </div>
             <div class="insight-item">
                 <div class="insight-icon">📊</div>
                 <h4 class="insight-heading">Trafficking Reporting</h4>
-                <p class="insight-text">{trafficking_countries} countries report trafficking data, indicating breadth of detection and reporting infrastructure in {region_display}.</p>
+                <p class="insight-text">{trafficking_countries} countries submit trafficking-specific data in {region_display}, including {trafficking_countries - countries_count if trafficking_countries > countries_count else 0} that only report trafficking (separate dataset with broader country coverage).</p>
             </div>
             <div class="insight-item">
                 <div class="insight-icon">⚖️</div>
@@ -1483,7 +1513,7 @@ elif st.session_state.current_page == "⚖️ Conviction Outcomes":
     <div class="insight-card">
         <h4 class="insight-title">⚖️ Conviction Outcomes: Justice System Results</h4>
         <p class="insight-text">
-            Quantitative analysis of actual conviction counts for serious crimes (rape and trafficking). Unlike other tabs showing reporting coverage, these metrics represent real judicial outcomes with verified conviction numbers.
+            Quantitative analysis of actual conviction counts for serious crimes (rape and drug trafficking). Unlike other tabs showing reporting coverage, these metrics represent real judicial outcomes with verified conviction numbers.
         </p>
     </div>
     """,
@@ -1585,7 +1615,7 @@ elif st.session_state.current_page == "⚖️ Conviction Outcomes":
         <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
             <h3 style="color: #000000; font-size: 1.2rem; font-weight: 600; margin: 0 0 10px 0; text-align: center;">Convictions by Crime Category Over Time</h3>
             <p style="color: #000000; font-size: 0.9rem; margin: 0 0 15px 0; text-align: center;">
-                Compares conviction trends between rape and trafficking cases across years. This reveals how judicial efforts against these serious crimes have evolved and identifies which crime type sees more successful prosecutions.
+                Compares conviction trends between rape and drug trafficking cases across years. This reveals how judicial efforts against these serious crimes have evolved and identifies which crime type sees more successful prosecutions.
             </p>
         """, unsafe_allow_html=True)
 
@@ -1695,7 +1725,7 @@ elif st.session_state.current_page == "⚖️ Conviction Outcomes":
         <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
             <h3 style="color: #000000; font-size: 1.2rem; font-weight: 600; margin: 0 0 10px 0; text-align: center;">Category Breakdown</h3>
             <p style="color: #000000; font-size: 0.9rem; margin: 0 0 15px 0; text-align: center;">
-                Displays the proportion of convictions between rape and trafficking cases. This pie chart reveals which crime category receives more judicial attention and successful prosecution outcomes in the selected timeframe.
+                Displays the proportion of convictions between rape and drug trafficking cases. This pie chart reveals which crime category receives more judicial attention and successful prosecution outcomes in the selected timeframe.
             </p>
         """, unsafe_allow_html=True)
 
@@ -1853,7 +1883,7 @@ elif st.session_state.current_page == "🏛️ Justice System Capacity":
         <div style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
             <h3 style="color: #000000; font-size: 1.2rem; font-weight: 600; margin: 0 0 10px 0; text-align: center;">Prosecutions by Crime Category Over Time</h3>
             <p style="color: #000000; font-size: 0.9rem; margin: 0 0 15px 0; text-align: center;">
-                Compares prosecution activity between rape and trafficking cases across years. This reveals how justice systems are allocating resources and which crime types are receiving more prosecutorial attention over time.
+                Compares prosecution activity between rape and drug trafficking cases across years. This reveals how justice systems are allocating resources and which crime types are receiving more prosecutorial attention over time.
             </p>
         """, unsafe_allow_html=True)
 
@@ -1868,7 +1898,7 @@ elif st.session_state.current_page == "🏛️ Justice System Capacity":
                          barmode='group',
                          color_discrete_map={
                              'Rape': '#667eea',
-                             'Trafficking in persons': '#ec4899'
+                             'Drug trafficking': '#ec4899'
                          })
             fig.update_layout(height=300,
                               margin=dict(l=40, r=20, t=10, b=100),
@@ -3058,4 +3088,3 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
         </div>
         """,
                     unsafe_allow_html=True)
-
