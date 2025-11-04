@@ -1080,7 +1080,7 @@ elif st.session_state.current_page == "📈 Overview":
 elif st.session_state.current_page == "👥 Gender Analysis":
     st.markdown("""
     <div class="insight-card">
-        <h4 class="insight-title style="color: black;">👥 Gender-Disaggregated Data Coverage</h4>
+        <h4 class="insight-title style="color: #000000 !important;">👥 Gender-Disaggregated Data Coverage</h4>
         <p class="insight-text">
             Availability of gender-disaggregated victimization data, showing which countries report victim demographics by sex and perpetrator relationship.
         </p>
@@ -3088,6 +3088,7 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
 
