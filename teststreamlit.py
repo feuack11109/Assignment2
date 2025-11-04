@@ -45,6 +45,17 @@ def load_data():
 
 offences_df, victims_df, trafficking_df, convicted_df, personnel_df, prosecuted_df, sdg_safety_df = load_data()
 
+# ---- Apply two-region mapping ----
+def to_two_region(region):
+    if pd.isna(region): 
+        return None
+    r = str(region).strip().lower()
+    if any(x in r for x in ["latin america", "caribbean", "northern america", "america"]):
+        return "Americas"
+    if "asia" in r:
+        return "Asia"
+    return None
+
 # ---- Add unified two-region column & filter to Americas vs Asia ----
 for _df in [offences_df, victims_df, trafficking_df, convicted_df, personnel_df, prosecuted_df]:
     _df["TwoRegion"] = _df["Region"].apply(to_two_region)
@@ -3190,6 +3201,7 @@ else:
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
 
