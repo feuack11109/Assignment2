@@ -7,6 +7,20 @@ import numpy as np
 st.set_page_config(page_title="Global Sexual Crime Statistics Dashboard",
                    layout="wide")
 
+# ---- Two-Region mode helpers ----
+TWO_REGION = True  # set to False to go back to full world view
+
+def to_two_region(region: str):
+    """Map all world regions into only 'Americas' and 'Asia'."""
+    if pd.isna(region):
+        return None
+    r = str(region).strip().lower()
+    if r.startswith("amer"):   # 'Americas' or 'Latin America...'
+        return "Americas"
+    if r.startswith("asia"):
+        return "Asia"
+    return None  # drop Africa/Europe/Oceania when two-region mode is on
+
 
 # Load data with caching
 
@@ -27,6 +41,19 @@ def load_data():
 
 
 offences_df, victims_df, trafficking_df, convicted_df, personnel_df, prosecuted_df, sdg_safety_df = load_data()
+
+# ---- Add unified two-region column & filter to Americas vs Asia ----
+for _df in [offences_df, victims_df, trafficking_df, convicted_df, personnel_df, prosecuted_df]:
+    _df["TwoRegion"] = _df["Region"].apply(to_two_region)
+
+if TWO_REGION:
+    offences_df     = offences_df[offences_df["TwoRegion"].notna()].copy()
+    victims_df      = victims_df[victims_df["TwoRegion"].notna()].copy()
+    trafficking_df  = trafficking_df[trafficking_df["TwoRegion"].notna()].copy()
+    convicted_df    = convicted_df[convicted_df["TwoRegion"].notna()].copy()
+    personnel_df    = personnel_df[personnel_df["TwoRegion"].notna()].copy()
+    prosecuted_df   = prosecuted_df[prosecuted_df["TwoRegion"].notna()].copy()
+
 
 st.markdown("""
 <style>
@@ -536,14 +563,17 @@ st.markdown("""
 """,
             unsafe_allow_html=True)
 
-# Region Filter - white background applied via CSS
+# Region Filter (Two-Region mode)
 col1, col2, col3 = st.columns([2, 2, 6])
 with col1:
-    all_regions = sorted(offences_df['Region'].unique().tolist())
-    region_options = ['All Regions'] + all_regions
-    selected_region = st.selectbox("🌍 Select Region",
-                                   region_options,
-                                   key="global_region_filter")
+    if TWO_REGION:
+        region_options = ["Both (Americas vs Asia)", "Americas", "Asia"]
+        selected_region = st.selectbox("🌍 Region", region_options, key="global_region_filter")
+    else:
+        all_regions = sorted(offences_df['Region'].unique().tolist())
+        region_options = ['All Regions'] + all_regions
+        selected_region = st.selectbox("🌍 Select Region", region_options, key="global_region_filter")
+
 
 # Filter data based on selected region
 if selected_region == 'All Regions':
@@ -2072,19 +2102,24 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
     
     st.markdown('<br>', unsafe_allow_html=True)
 
-    # Map SDG regions to our filter regions
-    def map_sdg_region(sdg_region):
-        """Map SDG regions to our standard region filter"""
-        region_mapping = {
-            'Sub-saharan Africa': 'Africa',
-            'Northern Africa And Western Asia': 'Africa',
-            'Latin America And The Caribbean': 'Americas',
-            'Central And Southern Asia': 'Asia',
-            'Eastern And South-eastern Asia': 'Asia',
-            'Europe And Northern America': 'Europe',
-            'Oceania': 'Oceania'
-        }
-        return region_mapping.get(sdg_region, None)
+# Map SDG regions to only Americas or Asia (Two-Region mode)
+def map_sdg_region_two(sdg_region):
+    """Simplify SDG region mapping for Two-Region mode"""
+    if pd.isna(sdg_region):
+        return None
+    s = str(sdg_region).lower()
+    if "latin america" in s or "caribbean" in s or "america" in s:
+        return "Americas"
+    if "asia" in s:
+        return "Asia"
+    return None  # drop all other regions
+
+# Apply the mapping
+sdg_safety_df["TwoRegion"] = sdg_safety_df["Region"].apply(map_sdg_region_two)
+
+if TWO_REGION:
+    sdg_safety_df = sdg_safety_df[sdg_safety_df["TwoRegion"].notna()].copy()
+
 
     # Add mapped region column
     sdg_safety_df['MappedRegion'] = sdg_safety_df['Region'].apply(
@@ -3088,6 +3123,7 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
 
