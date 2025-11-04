@@ -2197,28 +2197,35 @@ with col2:
     else:
         selected_subregion = 'All Subregions'
 
+# Apply all filters (run AFTER the controls are defined)
+indicator_pattern = indicator_options[selected_indicator]
 
-    # Apply all filters
-    indicator_pattern = indicator_options[selected_indicator]
-    analysis_data = filtered_sdg[filtered_sdg['Series'].str.contains(
-        indicator_pattern, case=False, na=False, regex=True)].copy()
+base = filtered_sdg.copy()
+if len(base) == 0:
+    analysis_data = base  # stays empty
+else:
+    # indicator filter
+    mask = base['Series'].str.contains(indicator_pattern, case=False, na=False, regex=True)
+    analysis_data = base[mask].copy()
 
-    # Apply year filter
-    analysis_data = analysis_data[(analysis_data['Year'] >= year_range[0])
-                                  & (analysis_data['Year'] <= year_range[1])]
+    # year filter
+    if 'Year' in analysis_data.columns:
+        analysis_data = analysis_data[
+            (analysis_data['Year'] >= year_range[0]) &
+            (analysis_data['Year'] <= year_range[1])
+        ]
 
-    # Apply gender filter
-    if selected_gender != 'All Genders':
+    # gender filter
+    if selected_gender != 'All Genders' and 'Sex' in analysis_data.columns:
         analysis_data = analysis_data[analysis_data['Sex'] == selected_gender]
 
-    # Apply country filter
-    if selected_country != 'All Countries':
+    # country filter
+    if 'Geo' in analysis_data.columns and selected_country != 'All Countries':
         analysis_data = analysis_data[analysis_data['Geo'] == selected_country]
 
-    # Apply subregion filter
-    if selected_subregion != 'All Subregions':
-        analysis_data = analysis_data[analysis_data['Subregion'] ==
-                                      selected_subregion]
+    # subregion filter
+    if 'Subregion' in analysis_data.columns and selected_subregion != 'All Subregions':
+        analysis_data = analysis_data[analysis_data['Subregion'] == selected_subregion]
 
     # Display filtered statistics
     st.markdown("""
@@ -3124,6 +3131,7 @@ with col2:
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
 
