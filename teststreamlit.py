@@ -10,19 +10,18 @@ st.set_page_config(page_title="Global Sexual Crime Statistics Dashboard",
 # ---- Two-Region mode helpers ----
 TWO_REGION = True  # set to False to go back to full world view
 
-def to_two_region(region: str):
-    """Map all world regions into only 'Americas' and 'Asia'."""
-    if pd.isna(region):
-        return None
+def to_two_region(region):
+    if pd.isna(region): return None
     r = str(region).strip().lower()
-
-    # match for any phrase containing the keywords
     if any(x in r for x in ["latin america", "caribbean", "northern america", "america"]):
         return "Americas"
     if "asia" in r:
         return "Asia"
+    return None
 
-    return None  # drop Africa/Europe/Oceania when two-region mode is on
+for _df in [offences_df, victims_df, trafficking_df, convicted_df, personnel_df, prosecuted_df]:
+    _df["TwoRegion"] = _df["Region"].apply(to_two_region)
+
 
 
 
@@ -2140,6 +2139,29 @@ def map_sdg_region(sdg_region):
 # Apply the mapping
 sdg_safety_df["MappedRegion"] = sdg_safety_df["Region"].apply(map_sdg_region)
 
+# ---- Region filtering (works for TWO_REGION + full world) ----
+def apply_region_filter(df, selected_region, two_region_on=True):
+    if two_region_on:
+        # No further narrowing if "Both" is chosen
+        if selected_region in ("Americas", "Asia"):
+            return df[df["TwoRegion"] == selected_region].copy()
+        else:  # "Both (Americas vs Asia)"
+            return df[df["TwoRegion"].notna()].copy()
+    else:
+        # Original world-view behaviour
+        if selected_region == "All Regions":
+            return df.copy()
+        else:
+            return df[df["Region"] == selected_region].copy()
+
+filtered_offences    = apply_region_filter(offences_df,   selected_region, TWO_REGION)
+filtered_victims     = apply_region_filter(victims_df,    selected_region, TWO_REGION)
+filtered_trafficking = apply_region_filter(trafficking_df,selected_region, TWO_REGION)
+filtered_convicted   = apply_region_filter(convicted_df,  selected_region, TWO_REGION)
+filtered_personnel   = apply_region_filter(personnel_df,  selected_region, TWO_REGION)
+filtered_prosecuted  = apply_region_filter(prosecuted_df, selected_region, TWO_REGION)
+
+
 # --- SDG DIAGNOSTIC (remove later) ---
 st.caption("SDG sanity check:")
 st.write("MappedRegion counts:", sdg_safety_df["MappedRegion"].value_counts(dropna=False))
@@ -3168,6 +3190,7 @@ else:
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
 
