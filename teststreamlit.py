@@ -2132,10 +2132,10 @@ else:
         filtered_sdg = sdg_safety_df[sdg_safety_df["MappedRegion"] == selected_region].copy()
 
 
-    # INTERACTIVE CONTROLS SECTION
-    col1, col2, col3 = st.columns(3)
+# INTERACTIVE CONTROLS SECTION
+col1, col2, col3 = st.columns(3)
 
-    with col1:
+with col1:
         # SDG Indicator Selector
         indicator_options = {
             '📊 Intentional Homicide': 'intentional homicide',
@@ -2150,7 +2150,7 @@ else:
                                               indicator_options.keys()),
                                           key="sdg_indicator")
 
-    with col2:
+with col2:
         # Year Range Filter
         if len(filtered_sdg) > 0:
             min_year = int(filtered_sdg['Year'].min())
@@ -2163,7 +2163,7 @@ else:
         else:
             year_range = (2000, 2023)
 
-    with col3:
+with col3:
         # Gender Filter
         gender_options = ['All Genders', 'Male', 'Female', 'Both']
         selected_gender = st.selectbox("Gender Filter",
@@ -3131,6 +3131,7 @@ else:
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
 
