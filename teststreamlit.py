@@ -2196,17 +2196,22 @@ else:
         else:
             selected_country = 'All Countries'
 
-    with col2:
-        # Subregion selector
-        if len(filtered_sdg) > 0:
-            subregions = ['All Subregions'] + sorted([
-                sr for sr in filtered_sdg['Subregion'].unique() if pd.notna(sr)
-            ])
-            selected_subregion = st.selectbox("Select Subregion",
-                                              options=subregions,
-                                              key="sdg_subregion")
-        else:
-            selected_subregion = 'All Subregions'
+with col2:
+    # Debug print: check which regions and subregions are present
+    st.write("Regions in filtered_sdg:", filtered_sdg["MappedRegion"].unique())
+    st.write("Subregions found:", filtered_sdg["Subregion"].unique())
+
+    # Subregion selector
+    if len(filtered_sdg) > 0:
+        subregions = ['All Subregions'] + sorted([
+            sr for sr in filtered_sdg['Subregion'].unique() if pd.notna(sr)
+        ])
+        selected_subregion = st.selectbox("Select Subregion",
+                                          options=subregions,
+                                          key="sdg_subregion")
+    else:
+        selected_subregion = 'All Subregions'
+
 
     # Apply all filters
     indicator_pattern = indicator_options[selected_indicator]
@@ -3134,6 +3139,7 @@ else:
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
 
