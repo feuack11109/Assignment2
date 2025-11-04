@@ -54,6 +54,16 @@ if TWO_REGION:
     personnel_df    = personnel_df[personnel_df["TwoRegion"].notna()].copy()
     prosecuted_df   = prosecuted_df[prosecuted_df["TwoRegion"].notna()].copy()
 
+# --- TWO-REGION DIAGNOSTIC (remove later) ---
+st.caption("TwoRegion data check:")
+st.write({
+    "offences": len(offences_df),
+    "victims": len(victims_df),
+    "trafficking": len(trafficking_df),
+    "convicted": len(convicted_df),
+    "personnel": len(personnel_df),
+    "prosecuted": len(prosecuted_df)
+})
 
 st.markdown("""
 <style>
@@ -596,6 +606,14 @@ else:
                                   selected_region].copy()
     filtered_personnel = personnel_df[personnel_df['Region'] ==
                                       selected_region].copy()
+
+# --- QUICK DIAGNOSTICS (remove later) ---
+st.info(
+    f"Region: {selected_region} | "
+    f"offences={len(filtered_offences)}, victims={len(filtered_victims)}, "
+    f"trafficking={len(filtered_trafficking)}, convicted={len(filtered_convicted)}, "
+    f"personnel={len(filtered_personnel)}, prosecuted={len(filtered_prosecuted)}"
+)
 
 # Calculate key statistics from real data
 total_countries = len(filtered_offences['Country'].unique())
@@ -2117,6 +2135,12 @@ def map_sdg_region(sdg_region):
 # Apply the mapping
 sdg_safety_df["MappedRegion"] = sdg_safety_df["Region"].apply(map_sdg_region)
 
+# --- SDG DIAGNOSTIC (remove later) ---
+st.caption("SDG sanity check:")
+st.write("MappedRegion counts:", sdg_safety_df["MappedRegion"].value_counts(dropna=False))
+st.write("Unique Series examples:", sdg_safety_df["Series"].dropna().unique()[:10])
+
+
 # Apply the two-region filtering logic (this replaces your old 'All Regions' block)
 if TWO_REGION:
     keep = ["Americas", "Asia"]
@@ -3139,6 +3163,7 @@ else:
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
 
