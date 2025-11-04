@@ -2103,7 +2103,7 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
     st.markdown('<br>', unsafe_allow_html=True)
 
 # Map SDG regions to only Americas or Asia (Two-Region mode)
-def map_sdg_region_two(sdg_region):
+def map_sdg_region(sdg_region):
     """Simplify SDG region mapping for Two-Region mode"""
     if pd.isna(sdg_region):
         return None
@@ -3123,6 +3123,7 @@ if TWO_REGION:
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
 
