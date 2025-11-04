@@ -2115,7 +2115,7 @@ def map_sdg_region(sdg_region):
     return None  # drop all other regions
 
 # Apply the mapping
-sdg_safety_df["TwoRegion"] = sdg_safety_df["Region"].apply(map_sdg_region_two)
+sdg_safety_df["TwoRegion"] = sdg_safety_df["Region"].apply(map_sdg_region)
 
 if TWO_REGION:
     sdg_safety_df = sdg_safety_df[sdg_safety_df["TwoRegion"].notna()].copy()
@@ -3123,6 +3123,7 @@ if TWO_REGION:
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
 
