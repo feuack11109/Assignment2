@@ -2108,35 +2108,24 @@ def map_sdg_region(sdg_region):
     if pd.isna(sdg_region):
         return None
     s = str(sdg_region).lower()
-    if "latin america" in s or "caribbean" in s or "america" in s:
+    if ("latin america" in s) or ("caribbean" in s) or ("northern america" in s) or ("america" in s):
         return "Americas"
     if "asia" in s:
         return "Asia"
     return None  # drop all other regions
 
 # Apply the mapping
-sdg_safety_df["TwoRegion"] = sdg_safety_df["Region"].apply(map_sdg_region)
+sdg_safety_df["MappedRegion"] = sdg_safety_df["Region"].apply(map_sdg_region)
 
-if TWO_REGION:
-    sdg_safety_df = sdg_safety_df[sdg_safety_df["TwoRegion"].notna()].copy()
-
-
-    # Add mapped region column
-    sdg_safety_df['MappedRegion'] = sdg_safety_df['Region'].apply(
-        map_sdg_region)
-
-    # Keep only the two regions when TWO_REGION is on
+# Apply the two-region filtering logic (this replaces your old 'All Regions' block)
 if TWO_REGION:
     keep = ["Americas", "Asia"]
     sdg_safety_df = sdg_safety_df[sdg_safety_df["MappedRegion"].isin(keep)].copy()
-
-    # Respect the dropdown: filter when a single region is chosen; show all for "Both"
     if selected_region in ("Americas", "Asia"):
         filtered_sdg = sdg_safety_df[sdg_safety_df["MappedRegion"] == selected_region].copy()
     else:  # "Both (Americas vs Asia)"
         filtered_sdg = sdg_safety_df.copy()
 else:
-    # Original world-view behaviour
     if selected_region == "All Regions":
         filtered_sdg = sdg_safety_df.copy()
     else:
@@ -2197,10 +2186,6 @@ else:
             selected_country = 'All Countries'
 
 with col2:
-    # Debug print: check which regions and subregions are present
-    st.write("Regions in filtered_sdg:", filtered_sdg["MappedRegion"].unique())
-    st.write("Subregions found:", filtered_sdg["Subregion"].unique())
-
     # Subregion selector
     if len(filtered_sdg) > 0:
         subregions = ['All Subregions'] + sorted([
