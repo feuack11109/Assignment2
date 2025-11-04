@@ -2136,54 +2136,59 @@ else:
 col1, col2, col3 = st.columns(3)
 
 with col1:
-        # SDG Indicator Selector
-        indicator_options = {
-            '📊 Intentional Homicide': 'intentional homicide',
-            '🚨 Human Trafficking': 'trafficking',
-            '🌃 Safety Perception': 'feel safe walking',
-            '⚠️ Violence Prevalence': 'Prevalence rate',
-            '👮 Police Reporting': 'Police reporting rate',
-            '⚖️ Prison & Bribery': 'unsentenced|bribery'
-        }
-        selected_indicator = st.selectbox("Select SDG Indicator",
-                                          options=list(
-                                              indicator_options.keys()),
-                                          key="sdg_indicator")
+    # SDG Indicator Selector
+    indicator_options = {
+        '📊 Intentional Homicide': 'intentional homicide',
+        '🚨 Human Trafficking': 'trafficking',
+        '🌃 Safety Perception': 'feel safe walking',
+        '⚠️ Violence Prevalence': 'Prevalence rate',
+        '👮 Police Reporting': 'Police reporting rate',
+        '⚖️ Prison & Bribery': 'unsentenced|bribery'
+    }
+    selected_indicator = st.selectbox(
+        "Select SDG Indicator",
+        options=list(indicator_options.keys()),
+        key="sdg_indicator"
+    )
 
 with col2:
-        # Year Range Filter
-        if len(filtered_sdg) > 0:
-            min_year = int(filtered_sdg['Year'].min())
-            max_year = int(filtered_sdg['Year'].max())
-            year_range = st.slider("Year Range",
-                                   min_value=min_year,
-                                   max_value=max_year,
-                                   value=(min_year, max_year),
-                                   key="sdg_year_range")
-        else:
-            year_range = (2000, 2023)
+    # Year Range Filter
+    if len(filtered_sdg) > 0:
+        min_year = int(filtered_sdg['Year'].min())
+        max_year = int(filtered_sdg['Year'].max())
+        year_range = st.slider(
+            "Year Range",
+            min_value=min_year,
+            max_value=max_year,
+            value=(min_year, max_year),
+            key="sdg_year_range"
+        )
+    else:
+        year_range = (2000, 2023)
 
 with col3:
-        # Gender Filter
-        gender_options = ['All Genders', 'Male', 'Female', 'Both']
-        selected_gender = st.selectbox("Gender Filter",
-                                       options=gender_options,
-                                       key="sdg_gender")
+    # Gender Filter
+    gender_options = ['All Genders', 'Male', 'Female', 'Both']
+    selected_gender = st.selectbox(
+        "Gender Filter",
+        options=gender_options,
+        key="sdg_gender"
+    )
 
-    # Additional filters row
-    col1, col2 = st.columns(2)
+# Additional filters row
+col1, col2 = st.columns(2)
 
-    with col1:
-        # Country selector
-        if len(filtered_sdg) > 0:
-            countries = ['All Countries'] + sorted(
-                filtered_sdg['Geo'].unique().tolist())
-            selected_country = st.selectbox(
-                "Select Country (for detailed view)",
-                options=countries,
-                key="sdg_country")
-        else:
-            selected_country = 'All Countries'
+with col1:
+    # Country selector
+    if len(filtered_sdg) > 0:
+        countries = ['All Countries'] + sorted(filtered_sdg['Geo'].unique().tolist())
+        selected_country = st.selectbox(
+            "Select Country (for detailed view)",
+            options=countries,
+            key="sdg_country"
+        )
+    else:
+        selected_country = 'All Countries'
 
 with col2:
     # Subregion selector
@@ -2191,11 +2196,14 @@ with col2:
         subregions = ['All Subregions'] + sorted([
             sr for sr in filtered_sdg['Subregion'].unique() if pd.notna(sr)
         ])
-        selected_subregion = st.selectbox("Select Subregion",
-                                          options=subregions,
-                                          key="sdg_subregion")
+        selected_subregion = st.selectbox(
+            "Select Subregion",
+            options=subregions,
+            key="sdg_subregion"
+        )
     else:
         selected_subregion = 'All Subregions'
+
 
 # Apply all filters (run AFTER the controls are defined)
 indicator_pattern = indicator_options[selected_indicator]
@@ -3131,6 +3139,7 @@ else:
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
 
