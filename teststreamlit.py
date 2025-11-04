@@ -4,7 +4,7 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 
-st.set_page_config(page_title="Global Crime Statistics Dashboard",
+st.set_page_config(page_title="Global Sexual Crime Statistics Dashboard",
                    layout="wide")
 
 
@@ -3088,5 +3088,6 @@ elif st.session_state.current_page == "🛡️ Safety & SDG Indicators":
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
