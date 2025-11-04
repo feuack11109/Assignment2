@@ -2125,12 +2125,23 @@ if TWO_REGION:
     sdg_safety_df['MappedRegion'] = sdg_safety_df['Region'].apply(
         map_sdg_region)
 
-    # Filter SDG data by selected region
-    if selected_region == 'All Regions':
+    # Keep only the two regions when TWO_REGION is on
+if TWO_REGION:
+    keep = ["Americas", "Asia"]
+    sdg_safety_df = sdg_safety_df[sdg_safety_df["MappedRegion"].isin(keep)].copy()
+
+    # Respect the dropdown: filter when a single region is chosen; show all for "Both"
+    if selected_region in ("Americas", "Asia"):
+        filtered_sdg = sdg_safety_df[sdg_safety_df["MappedRegion"] == selected_region].copy()
+    else:  # "Both (Americas vs Asia)"
+        filtered_sdg = sdg_safety_df.copy()
+else:
+    # Original world-view behaviour
+    if selected_region == "All Regions":
         filtered_sdg = sdg_safety_df.copy()
     else:
-        filtered_sdg = sdg_safety_df[sdg_safety_df['MappedRegion'] ==
-                                     selected_region].copy()
+        filtered_sdg = sdg_safety_df[sdg_safety_df["MappedRegion"] == selected_region].copy()
+
 
     # INTERACTIVE CONTROLS SECTION
     col1, col2, col3 = st.columns(3)
@@ -3123,6 +3134,7 @@ if TWO_REGION:
         </div>
         """,
                     unsafe_allow_html=True)
+
 
 
 
