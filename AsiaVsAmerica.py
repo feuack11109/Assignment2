@@ -3,13 +3,13 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 import numpy as np
-from pathlib import Path 
 
 st.set_page_config(page_title="Crime Statistics Dashboard: Asia & Americas",
                    layout="wide")
 
 
 # Load data with caching
+
 @st.cache_data
 def load_data():
     """Load all CSV datasets"""
@@ -27,6 +27,7 @@ def load_data():
 
 
 offences_df, victims_df, trafficking_df, convicted_df, personnel_df, prosecuted_df, sdg_safety_df = load_data()
+
 
 st.markdown("""
 <style>
@@ -636,35 +637,36 @@ if st.session_state.current_page == "🏠 Home":
         <div style="text-align: left; max-width: 1000px; margin: 30px auto 0 auto; padding: 0 20px;">
             <h3 style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 0 0 12px 0; border-top: 2px solid rgba(255, 255, 255, 0.5); padding-top: 15px;">Case Background</h3>
             <p style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; text-align: justify;">
-                Sexual violence, particularly rape, is one of the most persistent crimes across Asia and the Americas. Women and girls are disproportionately affected because of their biological vulnerability, ease of exploitation, and social inequalities. These crimes are part of a broader landscape that includes violent assaults, trafficking, drug-related exploitation, and homicide. Organized crime markets, such as the drug trade and firearms trafficking, further fuel this cycle. Justice systems intervene through prosecutions, convictions, and imprisonment, primarily responding to crimes after they occur.
+                This comparative analysis examines crime data and justice system responses across 79 countries in Asia (43 countries) and the Americas (36 countries). The dashboard analyzes nearly 2 million convictions, 16,152 detected trafficking victims, and multiple forms of violent crime reporting including sexual violence, kidnapping, and drug trafficking. Asia has recorded 1.28 million convictions compared to the Americas' 697,000—an 84% difference that reveals dramatically different enforcement scales. The data reveals unexpected regional patterns: Asia shows 58.6% female victims while the Americas shows 53.5% male victims, suggesting different crime reporting systems and victimization dynamics across regions.
             </p>
-            <h3 style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 20px 0 12px 0; border-top: 2px solid rgba(255, 255, 255, 0.5); padding-top: 15px;">Central Message (Problem Definition)</h3>
+            <h3 style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 20px 0 12px 0; border-top: 2px solid rgba(255, 255, 0.5); padding-top: 15px;">Central Message</h3>
             <p style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; text-align: justify;">
-                The central question is whether judicial interventions (prosecutions, convictions, imprisonment) address violent crime through punishment alone, or whether broader prevention and rehabilitation approaches are needed. The data provide a baseline of current justice system reporting to inform this ongoing policy debate.
+                Crime data from Asia and Americas reveals unexpected regional differences, complex victimization patterns, and insights about how justice systems operate at massive scale. Despite different prosecution approaches and conviction levels across regions, both face persistent challenges with sexual violence, trafficking, and violent crime. The data demonstrates how punishment-focused responses in both regions operate after harm occurs, raising important questions about the role of prevention in comprehensive crime reduction strategies.
             </p>
             <h3 style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 20px 0 12px 0; border-top: 2px solid rgba(255, 255, 255, 0.5); padding-top: 15px;">Goal and Objectives</h3>
             <p style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin-bottom: 10px;">
-                <strong>Goal:</strong> To determine if justice systems can effectively reduce violent crime.
+                <strong>Goal:</strong> To educate audiences about crime patterns and justice system responses in Asia and the Americas through data-driven storytelling and regional comparison.
             </p>
             <p style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin-bottom: 8px;"><strong>Objectives:</strong></p>
             <ul style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin: 0 0 20px 20px; padding-left: 20px;">
-                <li>To analyze why women and girls are disproportionately victims of rape and sexual violence.</li>
-                <li>To explore the relationship between different forms of violence, trafficking, and homicide through available crime reporting data.</li>
-                <li>To examine conviction patterns for drug trafficking crimes and their relationship to violent crime reporting.</li>
-                <li>To assess whether prosecutions, convictions, and prisons reduce crime or simply react to it.</li>
-                <li>To recommend strategies for building smarter, more preventative justice systems.</li>
+                <li>To reveal the scale of crime and justice system responses across 79 countries in two major global regions</li>
+                <li>To compare regional patterns between Asia and Americas in prosecutions, convictions, and victimization</li>
+                <li>To illustrate how gender patterns, relationship dynamics, and crime types vary across geographic contexts</li>
+                <li>To demonstrate how justice systems in both regions operate primarily through reactive punishment mechanisms</li>
+                <li>To present data insights that reveal gaps in detection, reporting coverage, and pattern recognition</li>
+                <li>To introduce prevention-focused approaches as complementary strategies supported by SDG safety indicators</li>
             </ul>
             <h3 style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 20px 0 12px 0; border-top: 2px solid rgba(255, 255, 255, 0.5); padding-top: 15px;">Narrative</h3>
             <p style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; text-align: justify;">
-                The story begins with victims of rape, highlighting how women and girls are the most vulnerable due to biological, social, and cultural inequalities. From there, the data covers multiple forms of violence including homicide, trafficking, and drug-related crime, revealing the breadth of violent crime reporting across justice systems. At the center are the crime markets, where firearms and drugs sustain organized violence and weaken community safety. Justice systems step in with prosecutions, convictions, and imprisonment. Still, these responses often come after harm has already occurred. Instead of preventing crime, they mostly process it. The narrative demonstrates that without early intervention, prevention, and rehabilitation, societies remain trapped in cycles of violence despite heavy investment in justice systems.
+                The story begins with <strong>THE CRISIS</strong>—trafficking victims already exploited before detection, families torn apart by violence, communities struggling with persistent sexual violence. An unexpected pattern emerges: two regions approach the problem in dramatically different ways, yet both face the same persistent challenges. Most victims knew their perpetrators, revealing violence hidden within relationships rather than from strangers. <strong>THE RESPONSE</strong> shows massive justice infrastructures operating at full capacity—prosecutors building cases, courts processing trials, prisons filling with convicted offenders. Despite different approaches, both regions operate on the same principle: punishment after harm occurs. <strong>THE GAPS</strong> emerge as data coverage varies wildly across countries, gender patterns shift across regions, and detection reveals a troubling truth: finding trafficking victims means the exploitation already happened. <strong>THE SOLUTION</strong> introduces a different lens through international safety indicators, revealing that punishment and safety don't always align. Prevention emerges as an upstream intervention—addressing root causes before violence erupts, building trust rather than just compliance. The story concludes with balance: accountability for harm done, prevention for harm not yet committed.
             </p>
             <h3 style="color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 20px 0 12px 0; border-top: 2px solid rgba(255, 255, 255, 0.5); padding-top: 15px;">Target Audience</h3>
             <ul style="color: #ffffff; font-size: 0.95rem; line-height: 1.7; margin: 0 0 10px 20px; padding-left: 20px;">
-                <li><strong>Policy Makers:</strong> To design smarter justice systems that prioritize prevention.</li>
-                <li><strong>Law Enforcement &amp; Judiciary:</strong> To strengthen conviction pipelines, disrupt markets, and balance punishment with rehabilitation.</li>
-                <li><strong>Civil Society &amp; NGOs:</strong> To advocate for victim protection, especially for women and children.</li>
-                <li><strong>Academics &amp; Students:</strong> To understand the link between crime and justice across Asia and the Americas through data-driven storytelling.</li>
-                <li><strong>General Public:</strong> To raise awareness of how justice, prevention, and safety are deeply interconnected.</li>
+                <li><strong>Students &amp; Academics:</strong> To learn about regional crime data patterns, comparative analysis methods, and data storytelling techniques using real-world justice system data</li>
+                <li><strong>Data Analysts &amp; Researchers:</strong> To understand how to extract insights from complex multi-country datasets and communicate findings through visual narratives</li>
+                <li><strong>Policy Learners:</strong> To gain foundational knowledge about how justice systems operate at scale across different regions and the data patterns that inform policy discussions</li>
+                <li><strong>General Public:</strong> To develop data literacy by exploring interactive visualizations showing crime patterns, regional comparisons, and justice system responses across Asia and the Americas</li>
+                <li><strong>Criminal Justice Students:</strong> To examine real prosecution, conviction, and trafficking data while learning to identify patterns, gaps, and system-level insights through comparative regional analysis</li>
             </ul>
         </div>
     </div>
@@ -858,9 +860,10 @@ elif st.session_state.current_page == "📈 Overview":
 
     with col1:
         years_available = sorted(filtered_offences['Year'].unique())
+        year_options = ['All Years'] + years_available
         selected_year = st.selectbox(
             "Year",
-            years_available if len(years_available) > 0 else [2020],
+            year_options if len(years_available) > 0 else ['All Years', 2020],
             key="year")
 
     with col2:
@@ -891,18 +894,24 @@ elif st.session_state.current_page == "📈 Overview":
     # Statistics cards
     col1, col2, col3, col4 = st.columns(4, gap="large")
 
-    current_year_data = filtered_data[filtered_data['Year'] == selected_year]
-    prev_year_data = filtered_data[filtered_data['Year'] == selected_year - 1]
+    # Handle "All Years" option
+    if selected_year == 'All Years':
+        current_year_data = filtered_data
+        prev_year_data = pd.DataFrame()  # Empty for comparison
+    else:
+        current_year_data = filtered_data[filtered_data['Year'] == selected_year]
+        prev_year_data = filtered_data[filtered_data['Year'] == selected_year - 1]
 
     total_records = len(current_year_data)
     countries_reporting = len(current_year_data['Country'].unique())
 
     with col1:
+        year_label = "All Years" if selected_year == 'All Years' else f"Year {selected_year}"
         st.markdown(f"""
         <div class="stat-card">
             <div class="stat-number">{total_records:,}</div>
             <div class="stat-label">Data Records</div>
-            <div class="stat-change negative">Year {selected_year}</div>
+            <div class="stat-change negative">{year_label}</div>
         </div>
         """,
                     unsafe_allow_html=True)
