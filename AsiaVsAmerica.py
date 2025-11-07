@@ -532,7 +532,7 @@ st.markdown("""
 
 st.markdown("""
 <div class="main-header">
-    <h1>Crime Statistics Dashboard: Asia & Americas</h1>
+    <h1>Sexual Crime Statistics Dashboard: Asia & Americas</h1>
     <p>Comprehensive analysis of crime data trends and patterns across two major world regions</p>
 </div>
 """,
